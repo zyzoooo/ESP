@@ -3,7 +3,6 @@ local camera = game:GetService("Workspace").CurrentCamera
 
 _G.TeamCheck = false -- Toggle TeamCheck to True or False
 
--- Function to create a distance label
 local function CreateDistanceLabel()
     local DistanceLabel = Drawing.new("Text")
     DistanceLabel.Color = Color3.new(1, 1, 1)
@@ -13,7 +12,6 @@ local function CreateDistanceLabel()
     return DistanceLabel
 end
 
--- Function to update distance label
 local function UpdateDistanceLabel(v, DistanceLabel)
     game:GetService("RunService").RenderStepped:Connect(function()
         if v.Character and v.Character:FindFirstChild("Humanoid") and v.Character:FindFirstChild("HumanoidRootPart") and v ~= lplr and v.Character.Humanoid.Health > 0 then
@@ -22,7 +20,7 @@ local function UpdateDistanceLabel(v, DistanceLabel)
 
             if onScreen then
                 DistanceLabel.Text = string.format("%.0f studs", distance)
-                DistanceLabel.Position = Vector2.new(Vector.X, Vector.Y - 20) -- Adjust position above the player
+                DistanceLabel.Position = Vector2.new(Vector.X, Vector.Y - 20)
                 DistanceLabel.Visible = true
 
                 if v.TeamColor == lplr.TeamColor and _G.TeamCheck then
@@ -37,7 +35,6 @@ local function UpdateDistanceLabel(v, DistanceLabel)
     end)
 end
 
--- Create distance labels for existing players
 for _, v in pairs(game.Players:GetPlayers()) do
     if v ~= lplr then
         local DistanceLabel = CreateDistanceLabel()
@@ -45,7 +42,6 @@ for _, v in pairs(game.Players:GetPlayers()) do
     end
 end
 
--- Handle new players
 game.Players.PlayerAdded:Connect(function(v)
     if v ~= lplr then
         local DistanceLabel = CreateDistanceLabel()
