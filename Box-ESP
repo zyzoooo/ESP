@@ -34,10 +34,9 @@ local function updateBoxESP(BoxOutline, Box, character)
 
         if onScreen then
             local distanceFactor = 1000 / rootPosition.Z
-            local boxWidth = distanceFactor + 20  -- Base width adjustment
+            local boxWidth = distanceFactor + 20
 
-            -- Adjust the width based on distance
-            if rootPosition.Z > 50 then  -- Change this threshold as needed
+            if rootPosition.Z > 50 then
                 boxWidth = boxWidth * (50 / rootPosition.Z)
             end
 
